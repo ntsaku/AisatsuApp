@@ -58,14 +58,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.buttonMessage) {
 //            mTextViewTime には HH:MM形式で時刻が設定されている。
 //            区切り記号「:」より前（HH)を時間として抜き出して、適切な挨拶文を
-//            mTextViewMessage に設定する。
+//            mTextViewMessage に設定する。　　
             String string = mTextViewTime.getText().toString(); /* HH:MM*/
             idx = string.indexOf(":");
             curHourOfDay = Integer.valueOf(string.substring(0,idx));
 
             if (curHourOfDay >= 2 && curHourOfDay < 10) {
                 aisatsuMessage = "おはよう";
-            } else if (curHourOfDay >= 10 &&  curHourOfDay < 17) {
+            } else if (curHourOfDay >= 10 &&  curHourOfDay < 18) {
                 aisatsuMessage = "こんにちは";
             } else { /*18:00-1:59*/
                 aisatsuMessage = "こんばんは";
@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         Log.d("UI-PARTS", String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
-                        mTextViewTime.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+                        String string = new String(hourOfDay + ":" + minute);
+                        mTextViewTime.setText(string);
                     }
                 },
                 curHourOfDay, // 初期値（現在の時間）
